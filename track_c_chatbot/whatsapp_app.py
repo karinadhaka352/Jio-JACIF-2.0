@@ -4,7 +4,7 @@ import datetime
 import subprocess
 import sys
 import os
-import re  # 🔍 Import Python's Regular Expression library
+import re
 
 # PATH FIXER: Tells Streamlit to look at the main root folder for module imports
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -32,6 +32,15 @@ st.sidebar.markdown(f"""
 - **Language Style:** *{p_info['behavioral_constraints']['primary_language']}*
 """)
 
+# If the user switches personas, clear the chat memory automatically to prevent crossover
+if "current_twin" not in st.session_state:
+    st.session_state.current_twin = selected_persona
+
+if st.session_state.current_twin != selected_persona:
+    st.session_state.messages = []
+    st.session_state.current_twin = selected_persona
+    st.rerun()
+
 if st.sidebar.button("Clear Chat History"):
     st.session_state.messages = []
     st.rerun()
@@ -42,6 +51,7 @@ if "messages" not in st.session_state:
         {"role": "assistant", "timestamp": "12:30 PM", "content": f"Namaste! Welcome to Jio Services. You are now testing live interactions with {selected_persona}'s synthetic twin avatar."}
     ]
 
+# Render chat history logs on screen
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.write(msg["content"])
@@ -51,19 +61,28 @@ for msg in st.session_state.messages:
 if user_query := st.chat_input("Type your marketing pitch or message here..."):
     current_time = datetime.datetime.now().strftime("%I:%M %p")
     
+    # 1. Display user input string immediately
     st.session_state.messages.append({"role": "user", "timestamp": current_time, "content": user_query})
     with st.chat_message("user"):
         st.write(user_query)
         st.caption(f"Sent at {current_time}")
         
+    # 2. Build out the FULL conversation history string to feed Llama-3's memory context
     system_rules = get_system_prompt(selected_persona)
-    full_prompt = f"System Rules:\n{system_rules}\n\nUser Input:\n{user_query}"
+    conversation_history = f"System Rules:\n{system_rules}\n\nHere is the ongoing conversation history:\n"
     
+    for msg in st.session_state.messages:
+        role_label = "Customer" if msg["role"] == "user" else "AI Simulation Assistant"
+        conversation_history += f"{role_label}: {msg['content']}\n"
+    
+    conversation_history += "\nGenerate the next response matching your profile constraints precisely."
+    
+    # 3. Stream a placeholder while calling the offline system line
     with st.chat_message("assistant"):
-        with st.spinner(f"Connecting to local Llama-3 core engine ({selected_persona} is thinking...)..."):
+        with st.spinner(f"Connecting to local Llama-3 core engine ({selected_persona} is tracking context...)..."):
             try:
                 process = subprocess.run(
-                    ['ollama', 'run', 'llama3', full_prompt],
+                    ['ollama', 'run', 'llama3', conversation_history],
                     stdout=subprocess.PIPE,
                     stderr=subprocess.PIPE,
                     text=True,
@@ -73,17 +92,16 @@ if user_query := st.chat_input("Type your marketing pitch or message here..."):
                 if process.returncode == 0:
                     raw_response = process.stdout.strip()
                     
-                    # 🧹 REGEX SCRUBBER: Catches both raw ANSI escapes and broken literal terminal codes
-                    # Wipes out things like \x1b[11D\x1b[K as well as literal [11D[K blocks
+                    # 🧹 Clean terminal artifacts
                     clean_step1 = re.sub(r'\x1b\[\d*[ADGK]', '', raw_response)
                     ai_response = re.sub(r'\[\d*[ADGK]', '', clean_step1)
-                    
                 else:
                     ai_response = f"❌ Local process execution error: {process.stderr.strip()}"
                     
             except Exception as e:
                 ai_response = f"❌ System execution failure: {e}"
                 
+        # 4. Render and commit response to session history arrays
         st.write(ai_response)
         st.caption(f"Sent at {current_time}")
         st.session_state.messages.append({"role": "assistant", "timestamp": current_time, "content": ai_response})
