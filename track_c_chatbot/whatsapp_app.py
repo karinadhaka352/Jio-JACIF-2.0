@@ -1,39 +1,89 @@
 # track_c_chatbot/whatsapp_app.py
 import streamlit as st
 import datetime
+import subprocess
+import sys
+import os
+import re  # 🔍 Import Python's Regular Expression library
 
-# Page configuration to match a clean mobile viewport layout
-st.set_page_config(page_title="Jio Conversational Assistant Mockup", page_icon="💬", layout="centered")
+# PATH FIXER: Tells Streamlit to look at the main root folder for module imports
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from track_a_twins.personas import personas_database, get_system_prompt
+
+# Page configurations to match a clean mobile viewport layout
+st.set_page_config(page_title="Jio Conversational Assistant Sandbox", page_icon="💬", layout="centered")
 
 st.title("💬 Jio Customer Care — WhatsApp Sandbox")
-st.caption("Testing Framework for Conversational Commerce and DPDP Compliance Sign-offs")
+st.caption("Phase 2 UI: Multi-Persona Behavioral Evaluation & Interaction Sandbox")
 
-# Initialize mock session state variables for chat history log loops
+# --- SIDEBAR CONTROL PANEL ---
+st.sidebar.header("⚙️ Simulation Settings")
+selected_persona = st.sidebar.selectbox(
+    "Select Customer Persona Twin:",
+    options=list(personas_database.keys())
+)
+
+p_info = personas_database[selected_persona]
+st.sidebar.markdown(f"""
+**Selected Profile Summary:**
+- **Age/Location:** {p_info['demographics']['age']} | {p_info['demographics']['location']}
+- **Income Tier:** {p_info['demographics']['income_tier']}
+- **Language Style:** *{p_info['behavioral_constraints']['primary_language']}*
+""")
+
+if st.sidebar.button("Clear Chat History"):
+    st.session_state.messages = []
+    st.rerun()
+
+# --- CHAT BUFFER CORE ---
 if "messages" not in st.session_state:
     st.session_state.messages = [
-        {"role": "assistant", "timestamp": "12:30 PM", "content": "Namaste! Welcome to Jio Customer Care. How can I assist you with your Jio Services today?"}
+        {"role": "assistant", "timestamp": "12:30 PM", "content": f"Namaste! Welcome to Jio Services. You are now testing live interactions with {selected_persona}'s synthetic twin avatar."}
     ]
 
-# Display current chat history logs natively
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.write(msg["content"])
         st.caption(f"Sent at {msg['timestamp']}")
 
-# Accept live user interface input strings
-if user_query := st.chat_input("Type your message here..."):
+# --- LIVE INTERACTION AND OFFLINE GENERATION LOOPS ---
+if user_query := st.chat_input("Type your marketing pitch or message here..."):
     current_time = datetime.datetime.now().strftime("%I:%M %p")
     
-    # Append user chat input to current screen instance state tracker
     st.session_state.messages.append({"role": "user", "timestamp": current_time, "content": user_query})
     with st.chat_message("user"):
         st.write(user_query)
         st.caption(f"Sent at {current_time}")
         
-    # Standard echo response for Phase 2 UI behavioral evaluation
-    mock_reply = f"System Echo: Received your message: '{user_query}'. Hooking into Track A Digital Twin configurations for persona response alignment testing..."
-    st.session_state.messages.append({"role": "assistant", "timestamp": current_time, "content": mock_reply})
+    system_rules = get_system_prompt(selected_persona)
+    full_prompt = f"System Rules:\n{system_rules}\n\nUser Input:\n{user_query}"
+    
     with st.chat_message("assistant"):
-        st.write(mock_reply)
+        with st.spinner(f"Connecting to local Llama-3 core engine ({selected_persona} is thinking...)..."):
+            try:
+                process = subprocess.run(
+                    ['ollama', 'run', 'llama3', full_prompt],
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    text=True,
+                    encoding='utf-8'
+                )
+                
+                if process.returncode == 0:
+                    raw_response = process.stdout.strip()
+                    
+                    # 🧹 REGEX SCRUBBER: Catches both raw ANSI escapes and broken literal terminal codes
+                    # Wipes out things like \x1b[11D\x1b[K as well as literal [11D[K blocks
+                    clean_step1 = re.sub(r'\x1b\[\d*[ADGK]', '', raw_response)
+                    ai_response = re.sub(r'\[\d*[ADGK]', '', clean_step1)
+                    
+                else:
+                    ai_response = f"❌ Local process execution error: {process.stderr.strip()}"
+                    
+            except Exception as e:
+                ai_response = f"❌ System execution failure: {e}"
+                
+        st.write(ai_response)
         st.caption(f"Sent at {current_time}")
-        
+        st.session_state.messages.append({"role": "assistant", "timestamp": current_time, "content": ai_response})
