@@ -11,6 +11,7 @@ import json
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from track_a_twins.personas import personas_database, get_system_prompt
+from track_c_chatbot.experiment_conditions import get_experimental_modifier
 
 # Page configurations
 st.set_page_config(page_title="Jio Conversational & Analytics Sandbox", page_icon="📊", layout="wide")
@@ -27,7 +28,6 @@ tab1, tab2 = st.tabs(["💬 Consumer Twin WhatsApp Sandbox", "📊 GEO Brand Sha
 with tab1:
     st.subheader("Interactive Persona Simulator")
     
-    # Sidebar structural rules moved locally inside Tab 1 view scope via layouts
     col1, col2 = st.columns([1, 3])
     
     with col1:
@@ -38,6 +38,18 @@ with tab1:
             key="persona_select"
         )
 
+        # NEW: 3-Arm Empirical Experiment Stimulus Selector Block
+        st.markdown("### 🧪 Research Variables")
+        selected_condition = st.selectbox(
+            "Active Experimental Arm:",
+            options=[
+                "Condition A: Transactional AI",
+                "Condition B: Emotional Mirroring Only",
+                "Condition C: Emotional AI + DPDP Disclosure"
+            ],
+            key="condition_select"
+        )
+
         p_info = personas_database[selected_persona]
         st.info(f"""
         **Profile Summary:**
@@ -46,22 +58,34 @@ with tab1:
         - **Language Style:** *{p_info['behavioral_constraints']['primary_language']}*
         """)
         
+        # Display helper notification tracking current active experimental stimulus
+        if "Condition A" in selected_condition:
+            st.warning("🤖 Robotic Control Mode Active")
+        elif "Condition B" in selected_condition:
+            st.error("🎭 Hidden Emotion Mode Active")
+        elif "Condition C" in selected_condition:
+            st.success("⚖️ DPDP Compliant Mode Active")
+
         if st.button("Clear Chat History"):
             st.session_state.messages = []
             st.rerun()
 
-    # Handle automatic session resets on crossover swaps
+    # Handle automatic session resets on parameter updates
     if "current_twin" not in st.session_state:
         st.session_state.current_twin = selected_persona
-    if st.session_state.current_twin != selected_persona:
+    if "current_condition" not in st.session_state:
+        st.session_state.current_condition = selected_condition
+
+    if st.session_state.current_twin != selected_persona or st.session_state.current_condition != selected_condition:
         st.session_state.messages = []
         st.session_state.current_twin = selected_persona
+        st.session_state.current_condition = selected_condition
         st.rerun()
 
     with col2:
         if "messages" not in st.session_state:
             st.session_state.messages = [
-                {"role": "assistant", "timestamp": "12:30 PM", "content": f"Namaste! Welcome to Jio Services. You are now testing live interactions with {selected_persona}'s synthetic twin avatar."}
+                {"role": "assistant", "timestamp": "12:30 PM", "content": f"Namaste! Welcome to Jio Services. You are now testing live interactions with {selected_persona}'s synthetic twin avatar under {selected_condition} constraints."}
             ]
 
         # Display history arrays
@@ -73,18 +97,24 @@ with tab1:
         # Execution Loops
         if user_query := st.chat_input("Type your marketing pitch or message here...", key="chat_input_unique"):
             current_time = datetime.datetime.now().strftime("%I:%M %p")
-            
             st.session_state.messages.append({"role": "user", "timestamp": current_time, "content": user_query})
             st.rerun()
 
-# Processing incoming dynamic conversational frames
+# Processing incoming dynamic conversational frames with injected stimuli modifiers
 if len(st.session_state.get("messages", [])) > 0 and st.session_state.messages[-1]["role"] == "user":
     last_msg = st.session_state.messages[-1]["content"]
     current_time = datetime.datetime.now().strftime("%I:%M %p")
     
-    system_rules = get_system_prompt(st.session_state.current_twin)
-    conversation_history = f"System Rules:\n{system_rules}\n\nHere is the ongoing conversation history:\n"
+    # 1. Gather original base persona rules
+    base_system_rules = get_system_prompt(st.session_state.current_twin)
     
+    # 2. Gather active 3-arm experimental condition modifier constraints
+    condition_modifier = get_experimental_modifier(st.session_state.current_condition, st.session_state.current_twin)
+    
+    # 3. Combine both layers cleanly into the model execution context
+    complete_system_rules = f"{base_system_rules}\n{condition_modifier}"
+    
+    conversation_history = f"System Rules:\n{complete_system_rules}\n\nHere is the ongoing conversation history:\n"
     for msg in st.session_state.messages[:-1]:
         role_label = "Customer" if msg["role"] == "user" else "AI Assistant"
         conversation_history += f"{role_label}: {msg['content']}\n"
@@ -126,31 +156,11 @@ with tab2:
         with open(report_path, "r", encoding="utf-8") as f:
             audit_data = json.load(f)
             
-        # Compile mathematical shares
         total_runs = len(audit_data)
         jio_wins = sum(1 for r in audit_data if r["visibility_metrics"]["jio_visible"])
         airtel_wins = sum(1 for r in audit_data if r["visibility_metrics"]["airtel_visible"])
         vi_wins = sum(1 for r in audit_data if r["visibility_metrics"]["vi_visible"])
         
-        # Structure dynamic metric cards
         m_col1, m_col2, m_col3, m_col4 = st.columns(4)
         m_col1.metric("Total Intents Audited", f"{total_runs} Queries")
-        m_col2.metric("Jio Recommendation Share", f"{(jio_wins/total_runs)*100:.1f}%")
-        m_col3.metric("Airtel Recommendation Share", f"{(airtel_wins/total_runs)*100:.1f}%")
-        m_col4.metric("Vodafone Vi Share", f"{(vi_wins/total_runs)*100:.1f}%")
-        
-        st.markdown("---")
-        
-        # Build out a clean interactive data layout table
-        st.markdown("### 🗃️ Raw Search Audit Records Log")
-        display_array = []
-        for r in audit_data:
-            display_array.append({
-                "ID": r["prompt_id"],
-                "Category": r["category"],
-                "Consumer Query Text": r["query"],
-                "Jio Recommendation": "✅ VISIBLE" if r["visibility_metrics"]["jio_visible"] else "❌ HIDDEN",
-                "Airtel Recommendation": "✅ VISIBLE" if r["visibility_metrics"]["airtel_visible"] else "❌ HIDDEN",
-                "Vi Recommendation": "✅ VISIBLE" if r["visibility_metrics"]["vi_visible"] else "❌ HIDDEN"
-            })
-        st.dataframe(display_array, use_container_width=True)
+        m_col2.metric("Jio Recommendation Share
