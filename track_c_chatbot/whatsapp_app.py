@@ -148,7 +148,10 @@ if len(st.session_state.get("messages", [])) > 0 and st.session_state.messages[-
 with tab2:
     st.subheader("📈 Search Optimization Visibility Matrix")
     
-    report_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "track_b_geo", "geo_audit_report.json")
+   # BULLETPROOF PATH RECOVERY: Anchors back to the absolute project base directory folder
+    current_file_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.abspath(os.path.join(current_file_dir, ".."))
+    report_path = os.path.join(project_root, "track_b_geo", "geo_audit_report.json")
     
     if not os.path.exists(report_path):
         st.warning("⚠️ No GEO Audit report matrix file found. Please execute your run_geo_audit.py background script first.")
@@ -161,6 +164,23 @@ with tab2:
         airtel_wins = sum(1 for r in audit_data if r["visibility_metrics"]["airtel_visible"])
         vi_wins = sum(1 for r in audit_data if r["visibility_metrics"]["vi_visible"])
         
+       # Structure dynamic metric cards cleanly
         m_col1, m_col2, m_col3, m_col4 = st.columns(4)
         m_col1.metric("Total Intents Audited", f"{total_runs} Queries")
-        m_col2.metric("Jio Recommendation Share
+        m_col2.metric("Jio Recommendation Share", f"{(jio_wins/total_runs)*100:.1f}%")
+        m_col3.metric("Airtel Recommendation Share", f"{(airtel_wins/total_runs)*100:.1f}%")
+        m_col4.metric("Vodafone Vi Share", f"{(vi_wins/total_runs)*100:.1f}%")
+        st.markdown("---")
+        
+        st.markdown("### 🗃️ Raw Search Audit Records Log")
+        display_array = []
+        for r in audit_data:
+            display_array.append({
+                "ID": r["prompt_id"],
+                "Category": r["category"],
+                "Consumer Query Text": r["query"],
+                "Jio Recommendation": "✅ VISIBLE" if r["visibility_metrics"]["jio_visible"] else "❌ HIDDEN",
+                "Airtel Recommendation": "✅ VISIBLE" if r["visibility_metrics"]["airtel_visible"] else "❌ HIDDEN",
+                "Vi Recommendation": "✅ VISIBLE" if r["visibility_metrics"]["vi_visible"] else "❌ HIDDEN"
+            })
+        st.dataframe(display_array, use_container_width=True)
