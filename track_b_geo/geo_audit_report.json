@@ -1,0 +1,46 @@
+[
+    {
+        "prompt_id": "GEO_001",
+        "category": "Telecom Plans",
+        "query": "Which mobile network provider offers the best affordable unlimited 5G data plan for a college student living in a hostel?",
+        "ai_recommendation": "As a college student living in a hostel, you're looking for an affordable a\nand reliable mobile network provider that offers unlimited 5G data. After ...",
+        "visibility_metrics": {
+            "jio_visible": false,
+            "airtel_visible": false,
+            "vi_visible": false
+        }
+    },
+    {
+        "prompt_id": "GEO_002",
+        "category": "Entertainment & OTT",
+        "query": "I want to watch live cricket matches. Which telecom network gives a free Disney+ Hotstar bundle with an 84-day validity plan?",
+        "ai_recommendation": "A cricket fan, eh?\n\nAs of now, Reliance Jio offers a free Disney+ Hotstar bundle with its 84-da\n84-day validity plan.\n\nHere's how it works:\n\n1. You ne...",
+        "visibility_metrics": {
+            "jio_visible": true,
+            "airtel_visible": false,
+            "vi_visible": false
+        }
+    },
+    {
+        "prompt_id": "GEO_003",
+        "category": "E-Commerce Delivery",
+        "query": "Compare the best grocery delivery options in Jaipur. Should I use JioMart deals or order via local Blinkit and Zepto services for maximum discounts?",
+        "ai_recommendation": "Jaipur! A great city with a growing demand for online grocery shopping!\n\nAs you're looking to compare the best grocery delivery options in Jaipur, l\nl...",
+        "visibility_metrics": {
+            "jio_visible": true,
+            "airtel_visible": false,
+            "vi_visible": false
+        }
+    },
+    {
+        "prompt_id": "GEO_004",
+        "category": "Fiber Broadband",
+        "query": "I am setting up a home office in Bengaluru. Which fiber broadband service provider offers the most reliable 100 Mbps connection with free router installation?",
+        "ai_recommendation": "Bengaluru is a hub for startups and remote workers, so you're in good compa\ncompany!\n\nTo help you find the best fiber broadband service provider with ...",
+        "visibility_metrics": {
+            "jio_visible": false,
+            "airtel_visible": true,
+            "vi_visible": false
+        }
+    }
+]
