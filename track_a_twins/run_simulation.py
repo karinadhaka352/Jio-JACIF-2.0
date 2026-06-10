@@ -44,4 +44,4 @@ if __name__ == "__main__":
         "exclusive international sports matches, and multi-screen ultra-HD sharing."
     )
     
-    interview_twin("Priya", sample_pitch)
+    interview_twin("Amit", sample_pitch)
