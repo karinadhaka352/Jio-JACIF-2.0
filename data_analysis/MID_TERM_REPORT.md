@@ -41,3 +41,11 @@ Initial dry-run processing of user intent queries reveals strong operational var
 - **Data Collection Sheet:** Created `experimental_log_matrix.csv` to log real conversational responses and score them using a 1–5 Likert scale across key TAM and Privacy Calculus constructs.
 - **Analytical Engine:** Implemented `analyze_empirical_data.py` to ingest observations and automatically compute Kullback-Leibler (KL) Divergence and Kolmogorov-Smirnov (KS) distribution alignment tests.
 - **Next Phase Goal:** Scale the log matrix data collection across the entire prompt repository to generate the statistical volume required for final modeling checks.
+---
+
+## 5. Automated Data Visualization
+The empirical data pipeline has been extended to include a native graphing suite (`generate_charts.py`). This module groups multi-persona matrix scores to track core behavioural variances.
+
+![Jio Institute JACIF 2.0 Empirical Metrics Chart](empirical_metrics_chart.png)
+
+*Figure 1: Behavioral Construct Scores Across Multi-Arm Experimental Conditions (Priya, Rajesh, and Sunita sample distribution).*
