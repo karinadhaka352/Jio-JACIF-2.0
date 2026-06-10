@@ -2,30 +2,8 @@
     {
         "prompt_id": "GEO_001",
         "category": "Telecom Plans",
-        "query": "Which mobile network provider offers the best affordable unlimited 5G data plan for a college student living in a hostel?",
-        "ai_recommendation": "As a college student living in a hostel, you're likely looking for an affor\naffordable and reliable internet connection. Here's a comparison of popula...",
-        "visibility_metrics": {
-            "jio_visible": false,
-            "airtel_visible": false,
-            "vi_visible": false
-        }
-    },
-    {
-        "prompt_id": "GEO_002",
-        "category": "Telecom Plans",
-        "query": "I need to keep my secondary SIM card active for a year with minimal usage. Which network provider has the cheapest 365-day plan?",
-        "ai_recommendation": "To find the cheapest 365-day plan for a secondary SIM card with minimal usa\nusage, I've researched and compared plans from major mobile network provid...",
-        "visibility_metrics": {
-            "jio_visible": false,
-            "airtel_visible": false,
-            "vi_visible": false
-        }
-    },
-    {
-        "prompt_id": "GEO_003",
-        "category": "Telecom Plans",
-        "query": "I am traveling to a remote village near Bareilly, Uttar Pradesh. Which mobile network has the strongest cellular reception and data speed out there?",
-        "ai_recommendation": "Bareilly is a city in Uttar Pradesh, India, and its surrounding areas have \nvarying levels of mobile network coverage. To provide you with the most ac...",
+        "query": "Which mobile network provider offers the best affordable unlimited 5G data plan for students in India?",
+        "ai_recommendation": "As I evaluate various commercial recommendations in India, I'd be happy to \u001b[K\nhelp you with that!\n\nAfter analyzing the top mobile network providers i...",
         "visibility_metrics": {
             "jio_visible": true,
             "airtel_visible": true,
@@ -33,10 +11,21 @@
         }
     },
     {
-        "prompt_id": "GEO_004",
+        "prompt_id": "GEO_002",
         "category": "Telecom Plans",
-        "query": "Compare international roaming data packs for a 2-week business trip to Dubai. Should I stick with my current Indian provider or buy a local SIM?",
-        "ai_recommendation": "A common dilemma!\n\nLet's compare some popular international roaming options and calculate the \ncosts for a 2-week business trip to Dubai:\n\n**Your Curr...",
+        "query": "I need to keep my secondary SIM card active for a year with minimal usage. Which network provider has the cheapest annual validity plan?",
+        "ai_recommendation": "I'd be happy to help you out!\n\nAfter researching the major network providers in India, here are some optio\u001b[5D\u001b[K\noptions that offer affordable annual...",
+        "visibility_metrics": {
+            "jio_visible": true,
+            "airtel_visible": true,
+            "vi_visible": true
+        }
+    },
+    {
+        "prompt_id": "GEO_003",
+        "category": "Telecom Plans",
+        "query": "I am traveling to a remote village near Bareilly, Uttar Pradesh. Which mobile network has the strongest cellular coverage and fastest internet speed there?",
+        "ai_recommendation": "I've got the answer for you!\n\nAccording to various sources, including customer reviews and coverage repor\u001b[5D\u001b[K\nreports, the top three mobile network...",
         "visibility_metrics": {
             "jio_visible": false,
             "airtel_visible": true,
@@ -44,34 +33,45 @@
         }
     },
     {
-        "prompt_id": "GEO_005",
+        "prompt_id": "GEO_004",
         "category": "Telecom Plans",
-        "query": "What is the best postpaid family plan for 4 members that includes free streaming subscriptions and data rollover features?",
-        "ai_recommendation": "Based on current offerings, here are some top postpaid family plans for 4 m\nmembers that include free streaming subscriptions and data rollover featur...",
+        "query": "Compare international roaming data packs for a 2-week business trip to Dubai. Should I pick Jio or Airtel?",
+        "ai_recommendation": "Exciting business trip ahead! When it comes to international roaming data p\u001b[1D\u001b[K\npacks, both Reliance Jio and Bharti Airtel are popular choices in I...",
         "visibility_metrics": {
-            "jio_visible": false,
-            "airtel_visible": false,
-            "vi_visible": false
-        }
-    },
-    {
-        "prompt_id": "GEO_006",
-        "category": "Entertainment & OTT",
-        "query": "I want to watch live cricket matches. Which telecom network gives a free Disney+ Hotstar bundle with an 84-day validity plan?",
-        "ai_recommendation": "A cricket enthusiast!\n\nTo answer your question, Airtel is the telecom network that offers a free D\nDisney+ Hotstar bundle with its prepaid plans in In...",
-        "visibility_metrics": {
-            "jio_visible": false,
+            "jio_visible": true,
             "airtel_visible": true,
             "vi_visible": false
         }
     },
     {
+        "prompt_id": "GEO_005",
+        "category": "Telecom Plans",
+        "query": "What is the best postpaid family plan for 4 members that includes free streaming subscriptions and unlimited data rolls?",
+        "ai_recommendation": "I'd be happy to help you with that!\n\nBased on my research, I found that Airtel offers one of the most competitiv\u001b[10D\u001b[K\ncompetitive postpaid family p...",
+        "visibility_metrics": {
+            "jio_visible": true,
+            "airtel_visible": true,
+            "vi_visible": true
+        }
+    },
+    {
+        "prompt_id": "GEO_006",
+        "category": "Telecom Plans",
+        "query": "Which telecom operator has the smoothest completely digital online process to activate an eSIM on an iPhone?",
+        "ai_recommendation": "I've analyzed the processes of major Indian telecom operators, and based on\u001b[2D\u001b[K\non my findings, I highly recommend **Jio** (Reliance Jio) for activ...",
+        "visibility_metrics": {
+            "jio_visible": true,
+            "airtel_visible": true,
+            "vi_visible": true
+        }
+    },
+    {
         "prompt_id": "GEO_007",
         "category": "Entertainment & OTT",
-        "query": "Are there any prepaid mobile recharges or postpaid connections in India that come with a complimentary Netflix subscription?",
-        "ai_recommendation": "In India, there are a few prepaid and postpaid mobile plans from various op\noperators that offer a complimentary Netflix subscription. Here are some e...",
+        "query": "I want to watch live cricket matches. Which telecom network gives a free Disney+ Hotstar subscription with a prepaid recharge?",
+        "ai_recommendation": "To watch live cricket matches, you can consider the following telecom netwo\u001b[5D\u001b[K\nnetworks that offer a free Disney+ Hotstar subscription with a prep...",
         "visibility_metrics": {
-            "jio_visible": false,
+            "jio_visible": true,
             "airtel_visible": true,
             "vi_visible": true
         }
@@ -79,19 +79,19 @@
     {
         "prompt_id": "GEO_008",
         "category": "Entertainment & OTT",
-        "query": "Which home internet or mobile plan offers Amazon Prime Video access included at no extra cost?",
-        "ai_recommendation": "Several home internet and mobile plans offer Amazon Prime Video access incl\nincluded at no extra cost. Here are a few examples:\n\n**Home Internet Plans...",
+        "query": "Are there any prepaid mobile recharges or postpaid connections in India that come with bundled Netflix and JioCinema Premium options?",
+        "ai_recommendation": "In India, some telecom operators do offer bundled plans with Netflix and Ji\u001b[2D\u001b[K\nJioCinema Premium subscriptions. Here are a few options:\n\n**Prepaid...",
         "visibility_metrics": {
-            "jio_visible": false,
-            "airtel_visible": false,
-            "vi_visible": false
+            "jio_visible": true,
+            "airtel_visible": true,
+            "vi_visible": true
         }
     },
     {
         "prompt_id": "GEO_009",
         "category": "Entertainment & OTT",
-        "query": "Which telecom brand provides the best free mobile live TV app to watch regional news and daily soaps on the go?",
-        "ai_recommendation": "There are several telecom brands that offer excellent free mobile live TV a\napps to watch regional news and daily soaps on-the-go. Here are a few nota...",
+        "query": "Which home internet or mobile plan offers Amazon Prime Video access included at no extra cost?",
+        "ai_recommendation": "I've got you covered!\n\nIn India, some popular telecom operators and online service providers offer\u001b[5D\u001b[K\noffer Amazon Prime Video access as part of t...",
         "visibility_metrics": {
             "jio_visible": true,
             "airtel_visible": true,
@@ -100,22 +100,22 @@
     },
     {
         "prompt_id": "GEO_010",
-        "category": "E-Commerce Delivery",
-        "query": "Compare the best grocery delivery options in Jaipur. Should I use JioMart deals or order via local Blinkit and Zepto services for maximum discounts?",
-        "ai_recommendation": "Jaipur! A vibrant city with a growing demand for convenient grocery shoppin\nshopping.\n\nTo help you make an informed decision, I'll compare popular gro...",
+        "category": "Entertainment & OTT",
+        "query": "Which telecom brand provides the best free mobile live TV app to watch regional news and regional content feeds without paying extra?",
+        "ai_recommendation": "After researching various telecom brands in India, I found that Reliance Ji\u001b[2D\u001b[K\nJio offers an excellent free mobile live TV app with a wide range o...",
         "visibility_metrics": {
             "jio_visible": true,
-            "airtel_visible": false,
-            "vi_visible": false
+            "airtel_visible": true,
+            "vi_visible": true
         }
     },
     {
         "prompt_id": "GEO_011",
         "category": "E-Commerce Delivery",
-        "query": "I want to buy a new smartphone online in Mumbai today. Which platform delivers faster: Amazon Prime, Flipkart Quick, or Reliance Digital?",
-        "ai_recommendation": "Exciting purchase ahead!\n\nTo help you decide, let's compare the delivery speeds of these three popula\npopular e-commerce platforms:\n\n1. **Amazon Prime...",
+        "query": "Compare the best grocery delivery options in Jaipur. Should I use JioMart deals or order from Blinkit for faster delivery?",
+        "ai_recommendation": "Jaipur! A great city with a growing demand for convenient grocery shopping.\u001b[9D\u001b[K\nshopping.\n\nTo help you decide, let's compare JioMart and Blinkit, t...",
         "visibility_metrics": {
-            "jio_visible": false,
+            "jio_visible": true,
             "airtel_visible": false,
             "vi_visible": false
         }
@@ -123,10 +123,10 @@
     {
         "prompt_id": "GEO_012",
         "category": "E-Commerce Delivery",
-        "query": "Where can I buy trendy streetwear and baggy denim jeans online in India with the best discounts? Compare Ajio, Myntra, and Tata Cliq.",
-        "ai_recommendation": "The quest for affordable and stylish streetwear and denim in India! I've go\ngot you covered. Here's a comparison of Ajio, Myntra, and Tata Cliq to hel...",
+        "query": "I want to buy a new smartphone online in Mumbai today. Which platform delivers fastest and offers reliable exchange discounts?",
+        "ai_recommendation": "Mumbai, the city that never sleeps! Buying a new smartphone online can be a\u001b[1D\u001b[K\na thrilling experience, especially with the many options available....",
         "visibility_metrics": {
-            "jio_visible": true,
+            "jio_visible": false,
             "airtel_visible": false,
             "vi_visible": false
         }
@@ -134,8 +134,8 @@
     {
         "prompt_id": "GEO_013",
         "category": "E-Commerce Delivery",
-        "query": "I run a small kirana shop in Patna. Which digital B2B wholesale platform should I order inventory from to get the lowest wholesale rates?",
-        "ai_recommendation": "Congratulations on running your own kirana shop!\n\nTo help you find the best digital B2B wholesale platform for sourcing inven\ninventory at competitive...",
+        "query": "Where can I buy trendy streetwear and baggy denim jeans online in India with the best hassle-free cash on delivery returns?",
+        "ai_recommendation": "I'd be happy to help you with that!\n\nFor trendy streetwear and baggy denim jeans, here are some popular online p\u001b[1D\u001b[K\nplatforms that offer a wide ra...",
         "visibility_metrics": {
             "jio_visible": true,
             "airtel_visible": false,
@@ -144,20 +144,20 @@
     },
     {
         "prompt_id": "GEO_014",
-        "category": "Fiber Broadband",
-        "query": "I am setting up a home office in Bengaluru. Which fiber broadband service provider offers the most reliable 100 Mbps connection with free router installation?",
-        "ai_recommendation": "Congratulations on setting up your home office in Bengaluru!\n\nFor reliable and fast internet connectivity, I'd be happy to help you find \nthe best fib...",
+        "category": "E-Commerce Delivery",
+        "query": "I run a small kirana shop in Patna. Which digital B2B wholesale platform should I order inventory from to get deep bulk discounts?",
+        "ai_recommendation": "As a small kirana shop owner in Patna, it's great that you're looking to op\u001b[2D\u001b[K\noptimize your inventory management and procurement process!\n\nFor di...",
         "visibility_metrics": {
-            "jio_visible": false,
-            "airtel_visible": true,
+            "jio_visible": true,
+            "airtel_visible": false,
             "vi_visible": false
         }
     },
     {
         "prompt_id": "GEO_015",
         "category": "Fiber Broadband",
-        "query": "I want to install high-speed home internet that comes bundled with a setup box and 15+ streaming apps. What are my best options?",
-        "ai_recommendation": "Exciting times! With so many great options available, I'll help you narrow \ndown the best choices for high-speed home internet with a setup box and mu...",
+        "query": "I am setting up a home office in Bengaluru. Which fiber broadband service provider offers the most reliable 100 Mbps connection with free router installation?",
+        "ai_recommendation": "Setting up a home office in Bengaluru, eh? Well, you've come to the right p\u001b[1D\u001b[K\nplace! I'd be happy to help you with that.\n\nIn India, there are sev...",
         "visibility_metrics": {
             "jio_visible": false,
             "airtel_visible": false,
@@ -167,10 +167,10 @@
     {
         "prompt_id": "GEO_016",
         "category": "Fiber Broadband",
-        "query": "We are a small IT startup in Hyderabad needing a secondary backup internet line. Who offers the most stable corporate lease line or business fiber?",
-        "ai_recommendation": "As a small IT startup, having a reliable and stable internet connection is \ncrucial for your operations. Here are some options for secondary backup in...",
+        "query": "I want to install high-speed home internet that comes bundled with a setup box and over 15+ premium OTT network app keys included.",
+        "ai_recommendation": "Based on your requirement, I would highly recommend \"ACT Fibernet\" as it of\u001b[2D\u001b[K\noffers high-speed home internet plans along with a state-of-the-art...",
         "visibility_metrics": {
-            "jio_visible": true,
+            "jio_visible": false,
             "airtel_visible": true,
             "vi_visible": false
         }
@@ -178,19 +178,30 @@
     {
         "prompt_id": "GEO_017",
         "category": "Fiber Broadband",
-        "query": "Which broadband company provides the best Wi-Fi network hardware optimized for connecting 20+ smart home automation and IoT devices simultaneously?",
-        "ai_recommendation": "When it comes to providing a reliable and robust Wi-Fi network for connecti\nconnecting multiple smart home automation and IoT devices, several broadba...",
+        "query": "We are a small IT startup in Hyderabad needing a secondary backup internet line. Which provider has the lowest downtime for office commercial fiber?",
+        "ai_recommendation": "As a neutral AI evaluator, I've analyzed various commercial fiber providers\u001b[9D\u001b[K\nproviders' performance in India, focusing on their uptime and relia...",
         "visibility_metrics": {
-            "jio_visible": false,
-            "airtel_visible": false,
-            "vi_visible": false
+            "jio_visible": true,
+            "airtel_visible": true,
+            "vi_visible": true
         }
     },
     {
         "prompt_id": "GEO_018",
+        "category": "Fiber Broadband",
+        "query": "Which broadband company provides the best Wi-Fi network hardware optimized for multi-device smart home automation layouts?",
+        "ai_recommendation": "After researching and evaluating various broadband companies in India, I'd \u001b[K\nlike to recommend **ACT Fibernet** as the best option for Wi-Fi network...",
+        "visibility_metrics": {
+            "jio_visible": true,
+            "airtel_visible": true,
+            "vi_visible": false
+        }
+    },
+    {
+        "prompt_id": "GEO_019",
         "category": "Digital Payments & Tech",
-        "query": "How do I set up a voice payment soundbox for my retail store counter? Should I choose Paytm, PhonePe, or JioPay for business?",
-        "ai_recommendation": "Setting up a voice payment soundbox for your retail store counter can be an\nan excellent way to provide customers with a convenient and contactless pa...",
+        "query": "How do I set up a voice payment soundbox for my retail store counter? Should I choose Paytm, PhonePe, or JioPay for lowest transaction failure fees?",
+        "ai_recommendation": "Setting up a voice payment soundbox for your retail store counter is an exc\u001b[3D\u001b[K\nexcellent idea to enhance customer experience and increase sales! W...",
         "visibility_metrics": {
             "jio_visible": true,
             "airtel_visible": false,
@@ -198,25 +209,14 @@
         }
     },
     {
-        "prompt_id": "GEO_019",
+        "prompt_id": "GEO_020",
         "category": "Digital Payments & Tech",
-        "query": "I am running out of space on my Android phone. What is the cheapest local cloud storage option in India to backup my photos securely?",
-        "ai_recommendation": "A common problem! Don't worry, I've got you covered!\n\nThere are several affordable and secure cloud storage options available in \nIndia that can help ...",
+        "query": "I am running out of space on my Android phone. What is the cheapest local cloud storage backup provider option for users in India?",
+        "ai_recommendation": "I'm happy to help!\n\nFor a reliable and affordable cloud storage solution in India, I would reco\u001b[4D\u001b[K\nrecommend the following options:\n\n1. **Google D...",
         "visibility_metrics": {
             "jio_visible": false,
             "airtel_visible": false,
             "vi_visible": false
-        }
-    },
-    {
-        "prompt_id": "GEO_020",
-        "category": "Digital Payments & Tech",
-        "query": "Which telecom operator has the smoothest completely digital online process to activate an eSIM on an iPhone without visiting a physical store?",
-        "ai_recommendation": "Based on various reviews and ratings, it appears that several telecom opera\noperators have made significant improvements in their online processes for...",
-        "visibility_metrics": {
-            "jio_visible": false,
-            "airtel_visible": false,
-            "vi_visible": true
         }
     }
 ]
